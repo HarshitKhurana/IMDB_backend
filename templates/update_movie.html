@@ -51,11 +51,6 @@ ul.topnav li a {
   text-decoration: none;
 }
 
-.topnav a:hover {
-  background-color: #ddd;
-  color: black;
-}
-
 .topnav a.active {
   background-color: #4CAF50;
   color: white;
@@ -148,14 +143,17 @@ tr:nth-child(even) {
     {% include 'header.html' %}
 
 <ul class="topnav">
-  <li><a class="active" href="/index">Movies</a></li>
-    <div class="dropdown">
-        <button class="dropbtn">Modify</button>
+  <li><a class="dropbtn" href="/index">Movies</a></li>
+
+    <div class="dropdown" style="background-color: #4CAF50">
+        <button class="dropbtn">Modify
+        </button>
         <div class="dropdown-content">
           <a href="./update_movie">Add/Edit Movie</a>
           <a href="./remove_movie">Remove Movie</a>
         </div>
     </div>
+
     <div class="topnav-right">
         <div class="dropdown">  
             <button class="dropbtn">Settings</button>
@@ -164,39 +162,29 @@ tr:nth-child(even) {
             </div>  
         </div>  
     </div>  
+
  </ul>
 
-<form action="/search_page" method="post">
-        <label for="search_query"><b>Search String: </b></label>
-    <input class="text-center" type="text" placeholder="Search query" name="search_query">
-    </br>
-    <button type="submit">Search</button>
-    </br>
-</form>
+</body>
+</html>
+<br>
+<h1 align="center">Update Movie</h1>
+<h3 align="center">(If movie_name already exists then it will be updated else added)</h3>
 
-<div style="height: 100%;   position: relative;">
-    <h2 class="text-center">Movies List...</h2> <p class = "text-center" >
-    <table>
-    <tr>
-        <th> SNo.</th>
-        <th> Movie Name</th>
-        <th> Director Name</th>
-        <th> Genre </th>
-        <th> IMDB Score </th>
-        <th> 99Popularity</th>
-    </tr>
-    {% for movie in movies_list %}
-          <tr>
-              <td> {{ movies_list.index(movie)+1 }} </td> 
-              <td> {{ movie[0] }} </td> 
-              <td> {{ movie[1] }} </td> 
-              <td> {{ movie[2] }} </td> 
-              <td> {{ movie[3] }} </td> 
-              <td> {{ movie[4] }} </td> 
-          </tr>
-    {% endfor %}
-    </table>
+<div class="container">
+  <form class="col-6 mx-auto" action="/update" method="POST">
+    <b STYLE="margin:00px 40px 00px 50px"> Movie Name </b></br>
+		<input type="text" class="form-control" name="movie_name"  required="true" placeholder="Movie" STYLE="margin:00px 40px 00px 50px"> <span> <br></br>
+    <b STYLE="margin:00px 40px 00px 50px"> Director Name </b></br>
+		<input type="text" class="form-control" name="director_name"  required="true" placeholder="Director" STYLE="margin:00px 40px 00px 50px"> <span><br></br>
+    <b STYLE="margin:00px 40px 00px 50px"> Genre </b></br>
+		<input type="text" class="form-control" name="genre"  required="true" placeholder="Genre" STYLE="margin:00px 40px 00px 50px"> <span><br></br>
+    <b STYLE="margin:00px 40px 00px 50px"> IMDB Score </b></br>
+		<input type="text" class="form-control" name="imdb_score"  required="true" placeholder="IMDB Score" STYLE="margin:00px 40px 00px 50px"> <span><br></br>
+    <b STYLE="margin:00px 40px 00px 50px"> 99Popularity </b></br>
+		<input type="text" class="form-control" name="popularity" required="true" placeholder="99Popularity" STYLE="margin:00px 40px 00px 50px"> <span><br></br>
+    <button STYLE="margin:30px 40px 30px 50px" type="submit">Update</button>
+  </form>
 </div>
 
-</body>
 </html>

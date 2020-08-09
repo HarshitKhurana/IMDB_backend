@@ -59,6 +59,75 @@ def search_page():
         return redirect("./logout", code=302)
 
 
+@app.route('/update_movie')
+def update_movie():
+    '''
+    This route returns the webpage for adding
+    movie in the Database.
+    '''
+    cookie_value = request.cookies.get("auth_type")
+    # only admin can add new movies
+    if (cookie_value != "admin"):
+        return redirect("/",code=302)
+    return render_template("update_movie.html")
+
+@app.route('/update',methods=['POST'])
+def update():
+    '''
+    This function updates movie to the database.
+    '''
+    cookie_value = request.cookies.get("auth_type")
+    # only admin can add new movies
+    if (cookie_value != "admin"):
+        return redirect("/",code=302)
+
+    parameters = ["imdb_score", "popularity", "director_name", "genre", "movie_name"]
+    movie_details = []
+    for param in parameters:
+        if param not in request.form:
+            return "<h3> {} field cannot be empty </h3>".format(param)
+        else:
+            movie_details.append( request.form[param] )
+
+    if not (db_interact.update_movie(movie_details)):
+        return "<h3> Unable to update Movie details for {}".\
+                format(movie_details[-1])
+
+    return redirect("/update_movie",code=302)
+
+@app.route('/remove_movie')
+def remove_movie():
+    '''
+    This route returns the webpage for removing
+    movies from the Database.
+    '''
+    cookie_value = request.cookies.get("auth_type")
+    # only admin can remove movies
+    if (cookie_value != "admin"):
+        return redirect("/",code=302)
+    return render_template("remove_movie.html")
+
+@app.route('/remove',methods=['POST'])
+def add():
+    '''
+    This function removes the movie from the database.
+    '''
+    cookie_value = request.cookies.get("auth_type")
+    # only admin can add new movies
+    if (cookie_value != "admin"):
+        return redirect("/",code=302)
+    
+    if "movie_name" not in request.form:
+        return "<h3> Movie_name field cannot be empty </h3>"
+    
+    movie_name = request.form['movie_name']
+    if not (db_interact.remove_movie(movie_name)):
+        return "<h3> Unable to remove Movie details for {}".\
+                format(movie_name)
+
+    return redirect("/",code=302)
+
+
 @app.route('/', defaults={'path': ''})
 @app.route('/<path:path>')
 def catch_all(path):

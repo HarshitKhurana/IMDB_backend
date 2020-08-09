@@ -87,8 +87,9 @@ def remove_movie(movie_name):
     global mysql_conn
     try:
         # Will raise exception incase it fails
-        cursor.execute("Delete from Movies where movie_name='{}'".format(movie_name))
-        mysql_conn.commit()
+        if (movie_name):
+            cursor.execute("Delete from Movies where movie_name='{}'".format(movie_name))
+            mysql_conn.commit()
         return True
     except Exception as e:
         mysql_conn.rollback()
