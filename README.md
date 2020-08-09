@@ -4,6 +4,6 @@
 
 
 ##### [\*] Tech Used:
-* Backend  : python Flask
+* Backend  : python Flask, Template scripting
 * Database : MySQL
-* Frontend : HTML/Javascript
+* Frontend : HTML, CSS 
