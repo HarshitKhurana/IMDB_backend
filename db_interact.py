@@ -1,6 +1,7 @@
 
 #!/usr/bin/python
 
+from flask import Flask
 from flaskext.mysql import MySQL
 
 '''
@@ -11,9 +12,6 @@ The reasone for this to be a seperate module is so
 that in future if reqd it can be replaced by ORM.
 Eg: SQLAlchemy
 '''
-
-from flask import Flask
-from flaskext.mysql import MySQL
 
 mysql = MySQL()
 mysql_user = "root"
