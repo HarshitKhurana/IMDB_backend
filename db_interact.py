@@ -110,7 +110,6 @@ def update_movie(row_parameters):
                 genre=\"{}\"'.format(imdb_score, popularity, director_name, genre,\
                         movie_name, imdb_score, popularity, director_name, genre)
 
-        print (upsert_query)
         # Will raise exception incase it fails
         cursor.execute(upsert_query)    
         mysql_conn.commit()
@@ -131,7 +130,6 @@ def get_all_movies():
         # Will raise exception incase it fails
         cursor.execute("Select movie_name,director_name,genre,imdb_score,99popularity from Movies")
         all_movies = cursor.fetchall()
-        print ("all_movies: ")
         mysql_conn.commit()
         return all_movies
     except Exception as e:
@@ -154,8 +152,6 @@ def search(keyword):
                         ('{}' IN NATURAL LANGUAGE MODE);".format(keyword)
         cursor.execute(query_string)
         relevant_rows = cursor.fetchall()
-        print ("Rows contacontaining keyword-'{}': ".
-                format(keyword), relevant_rows)
         mysql_conn.commit()
         return relevant_rows
     except Exception as e:

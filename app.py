@@ -30,7 +30,7 @@ def auth():
         # Verify user creds from DB query
         validated = db_interact.validate_user(user_name, password)
         if (validated and validated[0]):
-            print ("{} : {}, is_admin:{}".format(user_name, password, validated[1]))
+            #print ("{} : {}, is_admin:{}".format(user_name, password, validated[1]))
             if (validated[1]):
                 resp = make_response(render_template('admin_home.html', 
                         movies_list=db_interact.get_all_movies()))
