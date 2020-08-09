@@ -203,4 +203,4 @@ if __name__ == "__main__":
     if not (db_interact.connect_db(app)):
         print ("[#] Unable to initiate connection with Database")
         sys.exit(1)
-    app.run(debug=True)
+    app.run(debug=True,port=8080,host="0.0.0.0")
