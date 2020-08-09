@@ -1,0 +1,8 @@
+1. Added functionality for Front-end, DB interaction, user-authentication.
+
+Todo:
+1. Admin modification access left.
+2. Test on Ec2 with actual database left.
+3. Automation scripts for setting up the entire stuff reqd from scratch,
+    which downloaded mysql docker, creates the database as well pushes
+    testing json data in the DB.
